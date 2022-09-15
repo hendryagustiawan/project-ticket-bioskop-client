@@ -1,0 +1,89 @@
+* {
+  /* background-color: #182131; */
+  font-family: "Poppins", sans-serif;
+}
+
+/* Home */
+.logo h4 {
+  font-size: 30px;
+}
+
+.navbar .search input {
+  border-radius: 50px;
+  width: 300px;
+}
+
+section {
+  background-color: #020916;
+}
+
+.header .container ul li a {
+  font-style: normal;
+  font-size: 15px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.header .container a:hover {
+  background-color: #ffbb00;
+}
+
+.now-showing img {
+  height: 350px;
+}
+
+.coming-soon img {
+  height: 350px;
+}
+
+/* detail */
+hr.line {
+  border-top: 3px solid #ffffff;
+}
+
+section .items .list p {
+  color: #ffffff;
+}
+
+section .items .list {
+  margin-right: 200px;
+}
+
+/* select time */
+
+section .items .list .day button {
+  background-color: #ffbb00;
+  border-radius: 12px;
+  width: 150px;
+  height: 100px;
+  color: #182131;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+section .items .list .button-time button {
+  background-color: #182131;
+  border-radius: 50px;
+  width: 150px;
+  height: 50px;
+}
+
+/* payment */
+section .booking-summary .list p {
+  color: #ffffff;
+}
+
+/* seat */
+.seat {
+  background-color: #ffbb00;
+  height: 70px;
+  width: 10px;
+  margin: 3px;
+  font-weight: 500;
+}
+
+.seat:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  transform: scale(1.2);
+}

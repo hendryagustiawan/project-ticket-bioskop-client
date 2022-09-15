@@ -1,0 +1,111 @@
+<template>
+  <section>
+    <div class="header">
+      <!--?image -->
+      <div class="container">
+        <div
+          id="carouselExampleControlsNoTouching"
+          class="carousel slide"
+          data-bs-touch="false"
+        >
+          <div class="carousel-inner images">
+            <div class="carousel-item active">
+              <img
+                src="https://www.fajarpendidikan.co.id/wp-content/uploads/2021/12/Black-Panther-Wakanda-Forever.jpg"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://images.thedirect.com/media/article_full/spider-man-no-way-home-tobey-maguire-andrew-garfield_eukZd6T.jpg"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://entertainmentfunonline.co.in/wp-content/uploads/2022/02/Doctor-Strange-In-Multiverse-Of-Madness-Entertainment-Fun-Online.jpg"
+              />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleControlsNoTouching"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControlsNoTouching"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!--! Now Showing -->
+    <div class="now-showing">
+      <div class="container">
+        <h5 style="color: #ffffff" class="pt-5 pb-4">Now Showing</h5>
+        <div
+          class="card-items row row-cols-1 row-cols-md-4 g-4 justify-content-around"
+        >
+          <card-now-showing
+            v-for="moviesNow in moviesNowShowing"
+            :key="moviesNow.id"
+            :moviesNow="moviesNow"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!--! Coming Soon -->
+    <div class="coming-soon pb-5">
+      <div class="container">
+        <h5 style="color: #ffffff" class="pb-4">Coming Soon</h5>
+        <div
+          class="card-items row row-cols-1 row-cols-md-4 g-4 justify-content-around"
+        >
+          <card-coming-soon
+            v-for="moviesComing in moviesComingSoon"
+            :key="moviesComing.id"
+            :moviesComing="moviesComing"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+import cardNowShowing from "../components/CardMoviesNowShowing.vue";
+import cardComingSoon from "../components/CardMoviesComingSoon.vue";
+import { mapActions, mapState } from "pinia";
+import { useMovieStore } from "../stores/movies";
+export default {
+  name: "homePage",
+  computed: {
+    ...mapState(useMovieStore, ["moviesComingSoon", "moviesNowShowing"]),
+  },
+  methods: {
+    ...mapActions(useMovieStore, [
+      "getMoviesCoomingSoon",
+      "getMoviesNowShowing",
+    ]),
+  },
+  components: {
+    cardComingSoon,
+    cardNowShowing,
+  },
+  created() {
+    this.getMoviesCoomingSoon();
+    this.getMoviesNowShowing();
+  },
+};
+</script>
+
+<style></style>
