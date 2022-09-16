@@ -3,62 +3,80 @@
     <div class="header">
       <!--?image -->
       <div class="container">
-        <div
-          id="carouselExampleControlsNoTouching"
-          class="carousel slide"
-          data-bs-touch="false"
-        >
-          <div class="carousel-inner images">
-            <div class="carousel-item active">
-              <img
-                src="https://www.fajarpendidikan.co.id/wp-content/uploads/2021/12/Black-Panther-Wakanda-Forever.jpg"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                src="https://images.thedirect.com/media/article_full/spider-man-no-way-home-tobey-maguire-andrew-garfield_eukZd6T.jpg"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                src="https://entertainmentfunonline.co.in/wp-content/uploads/2022/02/Doctor-Strange-In-Multiverse-Of-Madness-Entertainment-Fun-Online.jpg"
-              />
+        <div class="row">
+          <div class="col-12">
+            <div
+              id="carouselExampleInterval"
+              class="carousel slide"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="3000">
+                  <img
+                    src="https://www.fajarpendidikan.co.id/wp-content/uploads/2021/12/Black-Panther-Wakanda-Forever.jpg"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                  <img
+                    src="https://images.thedirect.com/media/article_full/spider-man-no-way-home-tobey-maguire-andrew-garfield_eukZd6T.jpg"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                  <img
+                    src="https://entertainmentfunonline.co.in/wp-content/uploads/2022/02/Doctor-Strange-In-Multiverse-Of-Madness-Entertainment-Fun-Online.jpg"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleInterval"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleInterval"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
           </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExampleControlsNoTouching"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleControlsNoTouching"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
         </div>
       </div>
     </div>
 
     <!--! Now Showing -->
-    <div class="now-showing">
-      <div class="container">
-        <h5 style="color: #ffffff" class="pt-5 pb-4">Now Showing</h5>
-        <div
-          class="card-items row row-cols-1 row-cols-md-4 g-4 justify-content-around"
-        >
-          <card-now-showing
-            v-for="moviesNow in moviesNowShowing"
-            :key="moviesNow.id"
-            :moviesNow="moviesNow"
-          />
+    <div class="row">
+      <div class="now-showing">
+        <div class="container">
+          <h5 style="color: #ffffff" class="pt-5 pb-4">Now Showing</h5>
+          <div
+            class="card-items row row-cols-1 row-cols-md-4 g-4 justify-content-around"
+          >
+            <card-now-showing
+              v-for="moviesNow in moviesNowShowing"
+              :key="moviesNow.id"
+              :moviesNow="moviesNow"
+            />
+          </div>
         </div>
       </div>
     </div>

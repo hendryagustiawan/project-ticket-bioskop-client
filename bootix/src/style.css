@@ -13,6 +13,11 @@
   width: 300px;
 }
 
+.carousel-inner .carousel-item img {
+  width: 1000px;
+  height: 500px;
+}
+
 section {
   background-color: #020916;
 }
@@ -25,7 +30,7 @@ section {
 }
 
 .header .container a:hover {
-  background-color: #ffbb00;
+  color: #ffbb00;
 }
 
 .now-showing img {
@@ -47,6 +52,31 @@ section .items .list p {
 
 section .items .list {
   margin-right: 200px;
+}
+
+.background-img {
+  position: relative;
+}
+
+.background-img::before {
+  background-image: url(https://wallpaperaccess.com/full/13456.jpg);
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-size: cover;
+  filter: brightness(57%);
+}
+
+.poster {
+  position: relative;
+  left: 120px;
+}
+.photo-gallery img {
+  height: 200px;
+  width: 300px;
 }
 
 /* select time */
@@ -76,8 +106,6 @@ section .booking-summary .list p {
 /* seat */
 .seat {
   background-color: #ffbb00;
-  height: 70px;
-  width: 10px;
   margin: 3px;
   font-weight: 500;
 }
