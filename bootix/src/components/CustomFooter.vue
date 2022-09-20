@@ -42,9 +42,9 @@
           <!-- Grid column -->
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
             <!-- Content -->
-            <h6 class="text-uppercase fw-bold mb-4" style="color: #ffbb00">
-              <i class="fas fa-gem me-3"></i>Company name
-            </h6>
+            <h4 class="text-uppercase fw-bold mb-4" style="color: #ffbb00">
+              BooTix
+            </h4>
             <p>
               Here you can use rows and columns to organize your footer content.
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -62,16 +62,10 @@
               Products
             </h6>
             <p>
-              <a href="#!" class="text-reset">Angular</a>
+              <a class="text-reset text-decoration-none">Ticket</a>
             </p>
             <p>
-              <a href="#!" class="text-reset">React</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Vue</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Laravel</a>
+              <a class="text-reset text-decoration-none">Movie</a>
             </p>
           </div>
           <!-- Grid column -->
@@ -86,16 +80,16 @@
               Useful links
             </h6>
             <p>
-              <a href="#!" class="text-reset">Pricing</a>
+              <a class="text-reset text-decoration-none">Pricing</a>
             </p>
             <p>
-              <a href="#!" class="text-reset">Settings</a>
+              <a class="text-reset text-decoration-none">Settings</a>
             </p>
             <p>
-              <a href="#!" class="text-reset">Orders</a>
+              <a class="text-reset text-decoration-none">Orders</a>
             </p>
             <p>
-              <a href="#!" class="text-reset">Help</a>
+              <a class="text-reset text-decoration-none">Help</a>
             </p>
           </div>
 

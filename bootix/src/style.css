@@ -59,7 +59,7 @@ section .items .list {
 }
 
 .background-img::before {
-  background-image: url(https://wallpaperaccess.com/full/13456.jpg);
+  background-image: url(https://t3.ftcdn.net/jpg/05/07/67/78/360_F_507677881_lwsOUToBTTOk0mHHPhyudfK4BGS9LGO1.jpg);
   content: "";
   top: 0;
   left: 0;
@@ -67,7 +67,7 @@ section .items .list {
   height: 100%;
   position: absolute;
   background-size: cover;
-  filter: brightness(57%);
+  filter: brightness(85%);
 }
 
 .poster {
@@ -106,6 +106,8 @@ section .booking-summary .list p {
 /* seat */
 .seat {
   background-color: #ffbb00;
+  height: 70px;
+  width: 10px;
   margin: 3px;
   font-weight: 500;
 }

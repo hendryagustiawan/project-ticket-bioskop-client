@@ -7,7 +7,7 @@ import App from "./App.vue";
 const pinia = createPinia();
 
 pinia.use(({ store }) => {
-  store.router = markRaw;
+  store.router = markRaw(router);
 });
 
 // Axios.defaults.baseURL = "http://localhost:3000";
