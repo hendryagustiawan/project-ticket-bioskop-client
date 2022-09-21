@@ -42,7 +42,10 @@ export default {
     ...mapState(useMovieStore, ["page", "totalPage"]),
   },
   methods: {
-    ...mapActions(useMovieStore, ["getMoviesCoomingSoon"]),
+    ...mapActions(useMovieStore, [
+      "getMoviesCoomingSoon",
+      "getMoviesNowShowing",
+    ]),
     handleChangePage(pageTo, button) {
       this.getMoviesCoomingSoon(pageTo);
       if (button === "Previous") {
@@ -50,6 +53,7 @@ export default {
       } else if (button === "next") {
         this.buttonNumber += 1;
       }
+      this.getMoviesNowShowing(pageTo);
     },
   },
 };

@@ -53,7 +53,14 @@
           <p>Producer : {{ movie.producer }}</p>
         </div>
         <div class="trailer">
-          <iframe width="560" height="315" :src="movie.linkYT"></iframe>
+          <iframe
+            id="ytplayer"
+            type="text/html"
+            width="640"
+            height="360"
+            :src="linkYoutube"
+            frameborder="0"
+          ></iframe>
           <button
             style="
               background-color: #ffbb00;
@@ -62,6 +69,7 @@
               height: 50px;
               color: #020916;
               font-weight: 500;
+              margin-top: 20px;
             "
             @click="addBooking(movie.id)"
           >
@@ -88,6 +96,10 @@ export default {
     ...mapState(useMovieStore, ["movie"]),
     movieId() {
       return this.$route.params.id;
+    },
+    linkYoutube() {
+      let link = this.movie.linkYT;
+      return `https://www.youtube.com/embed/` + link.split("v=")[1];
     },
   },
   methods: {

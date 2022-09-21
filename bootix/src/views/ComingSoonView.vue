@@ -1,11 +1,11 @@
 <template>
   <section>
     <div class="container pt-3">
-      <div class="coming-soon pb-5">
+      <div class="coming-soon pb-3">
         <div class="container">
           <h5 style="color: #ffffff" class="pb-4">Coming Soon</h5>
           <div
-            class="card-items row row-cols-1 row-cols-md-4 g-4 justify-content-around"
+            class="card-items row row-cols-1 row-cols-md-4 g-4 justify-content-around pb-4"
           >
             <card-coming-soon
               v-for="moviesComing in moviesComingSoon"
@@ -14,6 +14,7 @@
             />
           </div>
         </div>
+        <pagination-button />
       </div>
     </div>
   </section>
@@ -23,6 +24,7 @@
 import cardComingSoon from "../components/CardMoviesComingSoon.vue";
 import { mapActions, mapState } from "pinia";
 import { useMovieStore } from "../stores/movies";
+import paginationButton from "../components/paginationButton.vue";
 export default {
   name: "comingSoon",
   computed: {
@@ -33,6 +35,7 @@ export default {
   },
   components: {
     cardComingSoon,
+    paginationButton,
   },
   created() {
     this.getMoviesCoomingSoon();
