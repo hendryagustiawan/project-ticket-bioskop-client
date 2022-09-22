@@ -70,13 +70,11 @@
             <p style="color: #ffffff">or sign up with:</p>
 
             <button
+              id="buttonDiv"
               type="button"
               class="btn btn-primary btn-floating mx-1 border-0"
-              style="background-color: #ffbb00; color: #020916"
-            >
-              <i class="fab fa-google"></i>
-              Log in with Google
-            </button>
+              style="background-color: #182131; color: #020916"
+            ></button>
           </div>
         </div>
       </div>
@@ -94,7 +92,24 @@ export default {
     ...mapWritableState(useCustomerStore, ["email", "password"]),
   },
   methods: {
-    ...mapActions(useCustomerStore, ["handleLogin"]),
+    ...mapActions(useCustomerStore, [
+      "handleLogin",
+      "handleCredentialResponse",
+    ]),
+  },
+  mounted() {
+    const cb = this.handleCredentialResponse;
+
+    window.google.accounts.id.initialize({
+      client_id:
+        "354700210553-6c57r1vcpsumfrh50bqshbi75hv49ni7.apps.googleusercontent.com",
+      callback: cb,
+    });
+    window.google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { theme: "outline", size: "large" } // customization attributes
+    );
+    window.google.accounts.id.prompt(); // also display the One Tap dialog
   },
 };
 </script>

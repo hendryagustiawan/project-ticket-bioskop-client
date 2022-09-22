@@ -1,5 +1,8 @@
 import { defineStore } from "pinia";
 import Axios from "../config/axios";
+import { createToaster } from "@meforma/vue-toaster";
+
+const toaster = createToaster({});
 
 export const useCustomerStore = defineStore("customers", {
   state: () => {
@@ -11,6 +14,26 @@ export const useCustomerStore = defineStore("customers", {
     };
   },
   actions: {
+    handleCredentialResponse(response) {
+      Axios.post("/customers/login-google", {
+        token: response.credential,
+      })
+        .then(({ data }) => {
+          console.log(data);
+          let { access_token } = data;
+
+          localStorage.setItem("access_token", access_token);
+
+          this.access_token = access_token;
+
+          this.router.push({ name: "home" });
+
+          this.getOneCustomer();
+        })
+        .catch((err) => {
+          toaster.error(err.response.data.message, { position: "top" });
+        });
+    },
     handleLogin() {
       Axios.post("/customers/login", {
         email: this.email,
@@ -24,7 +47,7 @@ export const useCustomerStore = defineStore("customers", {
           this.getOneCustomer();
         })
         .catch((err) => {
-          console.log(err);
+          toaster.error(err.response.data.message, { position: "top" });
         });
     },
     handleLogout() {
@@ -44,7 +67,7 @@ export const useCustomerStore = defineStore("customers", {
           localStorage.setItem("name", data.username);
         })
         .catch((err) => {
-          console.log(err);
+          toaster.error(err.response.data.message, { position: "top" });
         });
     },
   },

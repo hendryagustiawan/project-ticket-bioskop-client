@@ -1,12 +1,16 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import Axios from "../config/axios";
+import { createToaster } from "@meforma/vue-toaster";
+
+const toaster = createToaster({});
 
 export const useMovieStore = defineStore("movies", {
   state: () => {
     return {
       moviesComingSoon: [],
       moviesNowShowing: [],
+      myBooking: [],
       movie: {},
       day: "",
       time: "",
@@ -14,6 +18,8 @@ export const useMovieStore = defineStore("movies", {
       booking: {},
       page: 1,
       totalPage: 1,
+      payment_token: null,
+      price: null,
     };
   },
   actions: {
@@ -29,7 +35,7 @@ export const useMovieStore = defineStore("movies", {
           this.totalPage = data.total_pages;
         })
         .catch((err) => {
-          console.log(err);
+          toaster.error(err.response.data.message, { position: "top" });
         });
     },
     getMoviesNowShowing(page = 1) {
@@ -50,7 +56,7 @@ export const useMovieStore = defineStore("movies", {
           this.movie = data;
         })
         .catch((err) => {
-          console.log(err);
+          toaster.error(err.response.data.message, { position: "top" });
         });
     },
     addBooking(id) {
@@ -64,14 +70,14 @@ export const useMovieStore = defineStore("movies", {
         }
       )
         .then(() => {
-          this.router.push("/movie/selectdate");
+          this.router.push({ name: "select date" });
         })
         .catch((err) => {
-          console.log(err);
+          toaster.error(err.response.data.message, { position: "top" });
         });
     },
-    getBooking() {
-      Axios.get("/customers/booking/", {
+    getBookingId(id) {
+      Axios.get("/customers/booking/" + id, {
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -80,7 +86,46 @@ export const useMovieStore = defineStore("movies", {
           this.booking = data;
         })
         .catch((err) => {
-          console.log(err);
+          toaster.error(err.response.data.message, { position: "top" });
+        });
+    },
+    getMyBooking() {
+      Axios.get("/customers/booking/", {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+        .then(({ data }) => {
+          this.myBooking = data;
+        })
+        .catch((err) => {
+          toaster.error(err.response.data.message, { position: "top" });
+        });
+    },
+    getTokenPayment() {
+      Axios.post("/customers/payment", {
+        price: this.booking.Movie.price,
+      })
+        .then(({ data }) => {
+          this.payment_token = data.token;
+        })
+        .catch((err) => {
+          toaster.error(err.response.data.message, { position: "top" });
+        });
+    },
+    handleDelete(id) {
+      Axios.delete("/customers/booking/" + id, {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+        .then(() => {
+          this.router.push({ name: "home" });
+
+          this.getMyBooking();
+        })
+        .catch((err) => {
+          toaster.error(err.response.data.message, { position: "top" });
         });
     },
   },

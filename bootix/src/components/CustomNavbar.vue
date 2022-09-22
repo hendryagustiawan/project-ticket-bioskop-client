@@ -125,6 +125,15 @@
                     ></a
                   >
                 </li>
+                <li class="nav-item" v-if="access_token">
+                  <a class="nav-link" style="cursor: pointer"
+                    ><router-link
+                      class="text-decoration-none"
+                      :to="{ name: 'myticket' }"
+                      >My Ticket</router-link
+                    ></a
+                  >
+                </li>
               </ul>
             </div>
           </div>

@@ -9,6 +9,7 @@ import promotionView from "../views/promotionView.vue";
 import TicketView from "../views/TicketView.vue";
 import SelectSeatsView from "../views/SelectSeatsView.vue";
 import PaymentView from "../views/PaymentView.vue";
+import myTicketView from "../views/myTicketView.vue";
 
 const routes = [
   {
@@ -37,7 +38,7 @@ const routes = [
     component: NowShowingView,
   },
   {
-    path: "/movie/selectdate",
+    path: "/movie/selectdate/:id",
     name: "select date",
     component: SelectDateView,
   },
@@ -60,6 +61,11 @@ const routes = [
     path: "/movie/payment",
     name: "payment",
     component: PaymentView,
+  },
+  {
+    path: "/movie/myticket",
+    name: "myticket",
+    component: myTicketView,
   },
 ];
 

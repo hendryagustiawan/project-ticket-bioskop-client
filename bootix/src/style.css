@@ -84,18 +84,19 @@ section .items .list {
 section .items .list .day button {
   background-color: #ffbb00;
   border-radius: 12px;
-  width: 150px;
-  height: 100px;
+  width: 100px;
+  height: 50px;
   color: #182131;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
 }
 
 section .items .list .button-time button {
   background-color: #182131;
   border-radius: 50px;
-  width: 150px;
+  width: 100px;
   height: 50px;
+  font-size: 15px;
 }
 
 /* payment */
@@ -116,4 +117,12 @@ section .booking-summary .list p {
   cursor: pointer;
   background-color: #ffffff;
   transform: scale(1.2);
+}
+
+/* pagintaion button */
+.pagination li a {
+  color: #ffbb00;
+  background-color: #182131;
+  border: none;
+  cursor: pointer;
 }

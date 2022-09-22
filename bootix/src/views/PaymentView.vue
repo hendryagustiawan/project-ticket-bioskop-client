@@ -96,26 +96,46 @@
           <h5 class="pt-4" style="color: #ffffff">Booking Summary</h5>
           <div class="list">
             <br />
-            <p>Seat Info : A12</p>
+            <p>Title : {{ booking.Movie.title }}</p>
             <hr class="line" />
-            <p>Total Ticket : 3</p>
+            <p>Seat Info : {{ seats }}</p>
             <hr class="line" />
-            <p>Booking Fee : $1000</p>
+            <p>Showtime : {{ day }}, {{ time }}</p>
             <hr class="line" />
-            <p>Total : $1000</p>
+            <p>Booking Fee : {{ changeFormatPrice(booking.Movie.price) }}</p>
+            <hr class="line" />
+            <p>Total : {{ changeFormatPrice(booking.Movie.price) }}</p>
           </div>
-          <button
-            style="
-              border-radius: 35px;
-              width: 200px;
-              height: 50px;
-              color: #020916;
-              background-color: #ffbb00;
-              font-weight: 500;
-            "
-          >
-            Pay
-          </button>
+          <div class="d-flex justify-content-between">
+            <button
+              id="pay-button"
+              @click="handlePaymentButton"
+              style="
+                border-radius: 35px;
+                width: 150px;
+                height: 50px;
+                color: #020916;
+                background-color: #ffbb00;
+                font-weight: 500;
+              "
+            >
+              Pay
+            </button>
+            <button
+              class="bg-danger"
+              id="pay-button"
+              @click="handleDelete(booking.id)"
+              style="
+                border-radius: 35px;
+                width: 150px;
+                height: 50px;
+                color: #020916;
+                font-weight: 500;
+              "
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -123,8 +143,37 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "pinia";
+import { useMovieStore } from "../stores/movies";
 export default {
   name: "paymentView",
+  computed: {
+    ...mapState(useMovieStore, [
+      "booking",
+      "day",
+      "time",
+      "seats",
+      "payment_token",
+    ]),
+    snap() {
+      return window.snap;
+    },
+  },
+  methods: {
+    ...mapActions(useMovieStore, ["handleDelete", "getTokenPayment"]),
+    handlePaymentButton() {
+      this.snap.pay(this.payment_token);
+    },
+    changeFormatPrice(price) {
+      return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+      }).format(price);
+    },
+  },
+  mounted() {
+    this.getTokenPayment();
+  },
 };
 </script>
 

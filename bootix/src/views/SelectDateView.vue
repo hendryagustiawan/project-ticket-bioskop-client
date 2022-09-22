@@ -4,7 +4,7 @@
       <div class="poster card border-0" style="width: 18rem">
         <img
           class="card-img-top"
-          :src="booking[0].Movie.imgUrl"
+          :src="booking.Movie.imgUrl"
           alt="Card image cap"
         />
       </div>
@@ -12,7 +12,7 @@
     <div class="container pt-3 pb-3">
       <div class="title pt-4 pb-3">
         <h4 style="color: #ffffff">
-          {{ booking[0].Movie.title }}
+          {{ booking.Movie.title }}
         </h4>
       </div>
       <button
@@ -24,22 +24,22 @@
           background-color: #182131;
         "
       >
-        {{ booking[0].Movie.genre }}
+        {{ booking.Movie.genre }}
       </button>
       <p class="pt-4 pb-3" style="color: #ffffff">
-        {{ booking[0].Movie.synopsis }}
+        {{ booking.Movie.synopsis }}
       </p>
-      <div class="items">
+      <div class="items d-flex">
         <div class="list">
           <hr class="line" />
           <h5 style="color: #ffffff">Select Date</h5>
-          <div class="container day row justify-content-around">
-            <button @click.prevent="day = 'today'">TODAY</button>
-            <button @click.prevent="day = 'friday'">FRIDAY</button>
-            <button @click.prevent="day = 'saturday'">SATURDAY</button>
-            <button @click.prevent="day = 'sunday'">SUNDAY</button>
-            <button @click.prevent="day = 'monday'">MONDAY</button>
-            <button @click.prevent="day = 'tuesday'">TUESDAY</button>
+          <div class="container day justify-content-around">
+            <button @click.prevent="day = 'Today'">TODAY</button>
+            <button @click.prevent="day = 'Friday'">FRIDAY</button>
+            <button @click.prevent="day = 'Saturday'">SATURDAY</button>
+            <button @click.prevent="day = 'Sunday'">SUNDAY</button>
+            <button @click.prevent="day = 'Monday'">MONDAY</button>
+            <button @click.prevent="day = 'Tuesday'">TUESDAY</button>
           </div>
           <hr class="line" />
           <p style="color: #ffffff">CGV Mataram</p>
@@ -127,15 +127,46 @@
               >
             </button>
           </div>
-          <hr class="line" />
-          <div class="location">
-            <h5 style="color: #ffffff">Location</h5>
-            <img
-              src="https://www.google.com/maps/d/thumbnail?mid=1HlgDbfqE4ikvx678XMB7XYvr_sI&hl=en"
-              alt=""
+          <!-- <hr class="line" /> -->
+        </div>
+        <div class="location">
+          <h5 style="color: #ffffff">Location</h5>
+          <div class="mapouter pt-2">
+            <div class="gmap_canvas">
+              <iframe
+                width="400"
+                height="300"
+                id="gmap_canvas"
+                src="https://maps.google.com/maps?q=CGV%20Cinemas%20-%20Transmart%20Mataram&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"
+                marginwidth="0"
+              ></iframe
+              ><br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--! Now Showing -->
+    <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="now-showing">
+        <div class="container">
+          <h5 style="color: #ffffff" class="pt-5 pb-4 text-center">
+            More Movies
+          </h5>
+          <div
+            class="card-items row row-cols-1 row-cols-md-4 g-4 justify-content-around"
+          >
+            <card-now-showing
+              v-for="moviesNow in moviesNowShowing"
+              :key="moviesNow.id"
+              :moviesNow="moviesNow"
             />
           </div>
         </div>
+        <pagintaion-slide />
       </div>
     </div>
   </section>
@@ -144,20 +175,44 @@
 <script>
 import { mapActions, mapState, mapWritableState } from "pinia";
 import { useMovieStore } from "../stores/movies";
+import pagintaionSlide from "../components/pagintaionSlide.vue";
+import cardNowShowing from "../components/CardMoviesNowShowing.vue";
 export default {
   name: "dateView",
 
   computed: {
-    ...mapState(useMovieStore, ["booking"]),
+    ...mapState(useMovieStore, ["booking", "moviesNowShowing"]),
     ...mapWritableState(useMovieStore, ["day", "time"]),
+    movieId() {
+      return this.$route.params.id;
+    },
   },
   methods: {
-    ...mapActions(useMovieStore, ["getBooking"]),
+    ...mapActions(useMovieStore, ["getBookingId", "getMoviesNowShowing"]),
+  },
+  components: {
+    pagintaionSlide,
+    cardNowShowing,
   },
   created() {
-    this.getBooking();
+    this.getBookingId(this.movieId);
+    this.getMoviesNowShowing();
   },
 };
 </script>
 
-<style></style>
+<style>
+.mapouter {
+  position: relative;
+  text-align: right;
+  height: 300px;
+  width: 400px;
+}
+
+.gmap_canvas {
+  overflow: hidden;
+  background: none !important;
+  height: 300px;
+  width: 400px;
+}
+</style>
