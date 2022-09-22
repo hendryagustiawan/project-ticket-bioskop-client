@@ -13,8 +13,8 @@
             <h1 style="color: #ffbb00">BooTix</h1>
           </a>
         </div>
-        <h1 style="color: #ffffff">Thanks for Order!</h1>
-        <p style="color: #ffffff">Please Cek My Ticket.</p>
+        <h1 style="color: #ffffff" class="text-center">Thanks for Order!</h1>
+        <p style="color: #ffffff" class="text-center">Please Cek My Ticket.</p>
         <button
           type="button"
           class="btn btn-primary border-0 mt-4"
